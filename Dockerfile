@@ -7,7 +7,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 # Install all dependencies (including dev) to build the app
 FROM base AS deps
 COPY package*.json ./
-RUN npm ci
+RUN npm install
 
 # Build the Next.js application
 FROM base AS builder

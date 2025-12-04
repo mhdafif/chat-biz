@@ -5,7 +5,7 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 FROM base AS deps
-COPY package.json package-lock.json* ./
+COPY package.json package-lock.json ./
 RUN npm ci
 
 FROM base AS builder
@@ -19,7 +19,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 
 # Install only production/node runtime deps
-COPY package.json package-lock.json* ./
+COPY package.json package-lock.json ./
 RUN npm ci --omit=dev && npm cache clean --force
 
 COPY --from=builder /app/.next ./.next
